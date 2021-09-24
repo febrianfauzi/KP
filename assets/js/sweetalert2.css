@@ -541,9 +541,6 @@
   height: 2.625em;
   padding: 0 0.75em;
 }
-.swal2-input[type=number] {
-  max-width: 10em;
-}
 
 .swal2-file {
   width: 75%;

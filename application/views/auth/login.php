@@ -2,16 +2,16 @@
     <section class="section">
         <div class="container mt-5">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Login</h4>
+                            <h4>LOGIN UNTUK SISWA</h4>
                         </div>
 
                         <div class="card-body">
                             <?php echo $this->session->flashdata('message'); ?>
                             <?php unset($_SESSION['message']); ?>
-                            <form method="POST" action="<?= base_url('auth'); ?>">
+                            <form method="POST" action="<?= base_url('auth/indexSiswa'); ?>">
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input id="email" type="text" class="form-control" name="email" tabindex="1" value="<?php echo set_value('email'); ?>">
@@ -39,8 +39,13 @@
                             </form>
                         </div>
                     </div>
-                    <div class="mt-5 text-muted text-center">
+                    <div class="mt-3 mb-3 text-muted text-center">
                         Belum Punya Akun? <a href="<?= base_url(); ?>auth/registration">Buat Baru</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="<?= base_url('auth/indexGuru')?>" class="btn btn-outline-primary col">Login sebagai Guru</a>
+                        </div>
                     </div>
                 </div>
             </div>

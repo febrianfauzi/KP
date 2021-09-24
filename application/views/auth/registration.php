@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="mt-5 text-muted text-center">
-                        Sudah Memiliki Akun? <a href="<?= base_url(); ?>auth">Login</a>
+                        Sudah Memiliki Akun? <a href="<?= base_url('auth/indexSiswa'); ?>">Login</a>
                     </div>
                 </div>
             </div>

@@ -14,10 +14,10 @@
                         <hr>
                     </div>
                     <div class="row">
-                        <div class="author-box-left mr-3 col-md-2">
-                            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle " width="200" height="200">
+                        <div class="author-box-left ml-2 col-md-2">
+                            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle " width="90%" height="75%">
                             <div class="clearfix"></div>
-                            <a href="#" class="btn btn-primary mt-3">Ganti</a>
+                            <a href="#" class="btn btn-primary col-md-8 mt-3">Ganti</a>
                         </div>
                         <div class="col mt-3">
                             <small>Nama :</small>
@@ -75,5 +75,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

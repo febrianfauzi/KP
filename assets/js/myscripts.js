@@ -14,7 +14,7 @@ $('.tombol-hapus').on('click', function(e){
     const href = $(this).attr('href');
     Swal.fire({
         title: 'Apakah anda yakin?',
-        text: "Data kegiatan akan dihapus",
+        text: "Data "+ content +" akan dihapus",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -26,3 +26,68 @@ $('.tombol-hapus').on('click', function(e){
         }
       })
 });
+
+	$(document).ready(function () {
+		$(document).on('click', '#detguru', function () {
+			var email = $(this).data('email');
+			var alamat = $(this).data('alamat');
+			var nama = $(this).data('nama_guru');
+			var kelas = $(this).data('kelas');
+			var nip = $(this).data('nip');
+			$('.modal-body #nip').text(nip);
+			$('.modal-body #nama').text(nama);
+			$('.modal-body #kelas').text(kelas);
+			$('.modal-body #email').text(email);
+			$('.modal-body #alamat').text(alamat);
+		})
+	});
+	
+	$(document).ready(function () {
+		$(document).on('click', '#editguru', function () {
+			var id = $(this).data('id');
+			var nip = $(this).data('nip');
+			var nama = $(this).data('nama');
+			var id_kelas = $(this).data('id_kelas');
+			var email = $(this).data('email');
+			var alamat = $(this).data('alamat');
+			$('.modal-body #id').val(id);
+			$('.modal-body #nip').val(nip);
+			$('.modal-body #nama').val(nama);
+			$('.modal-body #id_kelas').val(id_kelas);
+			$('.modal-body #email').val(email);
+			$('.modal-body #alamat').val(alamat);
+		})
+	});
+	
+	$(document).ready(function () {
+		$(document).on('click', '#detsiswa', function () {
+			var nis = $(this).data('nis');
+			var nama = $(this).data('nama');
+			var kelas = $(this).data('kelas');
+			var email = $(this).data('email');
+  			var alamat = $(this).data('alamat');
+  			$('.modal-body #nis').text(nis);
+  			$('.modal-body #nama').text(nama);
+  			$('.modal-body #kelas').text(kelas);
+  			$('.modal-body #email').text(email);
+  			$('.modal-body #alamat').text(alamat);
+			document.getElementById("siswa").value = nis;
+  		})
+  	});
+
+  	$(document).ready(function () {
+  		$(document).on('click', '#editsiswa', function () {
+  			var id = $(this).data('id');
+  			var nis = $(this).data('nis');
+  			var nama = $(this).data('nama');
+  			var id_kelas = $(this).data('id_kelas');
+  			var email = $(this).data('email');
+  			var alamat = $(this).data('alamat');
+  			$('.modal-body #id').val(id);
+  			$('.modal-body #nis').val(nis);
+  			$('.modal-body #nama').val(nama);
+  			$('.modal-body #id_kelas').val(id_kelas);
+  			$('.modal-body #email').val(email);
+  			$('.modal-body #alamat').val(alamat);
+  		})
+  	});

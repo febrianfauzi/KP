@@ -16,6 +16,7 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/custom.css">
+    
 </head>
 
 <body>

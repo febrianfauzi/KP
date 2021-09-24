@@ -53,7 +53,7 @@ class IsiKegiatan_model extends CI_model
                             </div>';
             }
             echo '<tr>';
-            echo '<td>' . $i++ . '</td>';
+            echo '<td class="text-center">' . $i++ . '.</td>';
             echo '<td><pre>' . $row['nama_kegiatan'] . '</pre></td>';
             echo '<td>' . $radio . '</td>';
             echo '</tr>';
@@ -85,19 +85,11 @@ class IsiKegiatan_model extends CI_model
 
         foreach ($query as $q) {
             if ($q->tindakan == 'Ya') {
-                $data = '<i class="fas fa-check"></i>';
+                $data = '<i class="fas fa-check green"></i>';
             } elseif ($q->tindakan == 'Tidak') {
-                $data = '<i class="fas fa-times"></i>';
+                $data = '<i class="fas fa-times red"></i>';
             }
             return $data;
         }
-    }
-
-    public function cekTgl($identitas)
-    {
-        $this->db->select('*');
-        $this->db->from('isi_kegiatan');
-        $this->db->where('nis', $identitas);
-        return $this->db->get()->result();
     }
 }

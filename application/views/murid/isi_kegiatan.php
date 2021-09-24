@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
-                                    <tr class="text-center">
+                                    <tr class="text-center bg-light">
                                         <th width="2%">No</th>
                                         <th>Nama Kegiatan</th>
                                         <th width="25%">Action</th>

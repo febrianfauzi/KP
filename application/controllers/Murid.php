@@ -89,7 +89,6 @@ class Murid extends CI_Controller
         $data['identitas'] = $identitas;
         $data['role_id'] = 'murid';
         $data['title'] = 'Isi Kegiatan Murid';
-        $data['cektgl'] = $this->IsiKegiatan_model->cekTgl($identitas);
         $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
 
         $this->load->view('templates/user_header', $data);

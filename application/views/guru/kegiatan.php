@@ -13,9 +13,9 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <h4><?php if (isset($Ukegiatan)) {
-                            echo "Edit Data Kegiatan";
+                            echo "EDIT DATA KEGIATAN";
                         } else {
-                            echo "Tambah Kegiatan";
+                            echo "TAMBAH KEGIATAN";
                         } ?></h4>
                 </div>
                 <div class="card-body">
@@ -55,10 +55,10 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="row col">
-                        <div class="col-md-7 mb-3">
-                            <h4>Daftar Kegiatan</h4>
+                        <div class="col-md-7">
+                            <h4>DAFTAR KEGIATAN</h4>
                         </div>
-                        <div class="col-md-5">
+                        <!-- <div class="col-md-5">
                             <form action="" method="POST">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Cari Kegiatan.." name="keyword">
@@ -67,42 +67,51 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <tr class="text-center">
-                                <th width="30%">Nama Kegiatan</th>
-                                <th widht="55%">Keterangan</th>
-                                <th width="15%">Action</th>
-                            </tr>
-                            <?php if (empty($kegiatan)) : ?>
-                                <tr>
-                                    <td colspan="3">
-                                        <div class="alert alert-danger mt-3" role="alert">
-                                            Data kegiatan tidak ditemukan
-                                        </div>
-                                    </td>
+                    <!-- <div class="table-responsive"> -->
+                        <table class="table datatables" id="datatables">
+                            <thead>
+                                <tr class="text-center">
+                                    <th width="5%">No</th>
+                                    <th width="30%">Nama Kegiatan</th>
+                                    <th widht="50%">Keterangan</th>
+                                    <th width="15%">Action</th>
                                 </tr>
-                            <?php endif; ?>
-                            <?php foreach ($kegiatan as $row) : ?>
-                                <tr>
-                                    <td>
-                                        <pre><?= $row['nama_kegiatan'] ?></pre>
-                                    </td>
-                                    <td>
-                                        <pre><?= $row['ket'] ?></pre>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="<?= base_url(); ?>guru/ubahKegiatan/<?= $row['id']; ?>" class="btn btn-info btn-sm" title="Edit"><i class="fas fa-pen"></i></a>
-                                        <a href="<?= base_url(); ?>guru/hapusKegiatan/<?= $row['id']; ?>" class="btn btn-danger btn-sm tombol-hapus" title="Hapus"><i class="fas fa-trash"></i></a>
-                                    </td>
-                                </tr>
-                            <?php endforeach ?>
+                            </thead>
+                            <tbody>
+                                <?php if (empty($kegiatan)) : ?>
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="alert alert-danger mt-3" role="alert">
+                                                Data kegiatan tidak ditemukan
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                                <?php
+                                $i = 1;
+                                foreach ($kegiatan as $row) : ?>
+                                    <tr>
+                                        <td><?php echo $i++; ?></td>
+                                        <td>
+                                            <pre><?= $row['nama_kegiatan'] ?></pre>
+                                        </td>
+                                        <td>
+                                            <pre><?= $row['ket'] ?></pre>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="<?= base_url(); ?>guru/ubahKegiatan/<?= $row['id']; ?>" class="btn btn-info btn-sm" data-toggle="tooltip" title="Edit"><i class="fas fa-pen"></i></a>
+                                            <a href="<?= base_url(); ?>guru/hapusKegiatan/<?= $row['id']; ?>" class="btn btn-danger btn-sm tombol-hapus" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+
+                                <?php endforeach ?>
+                            </tbody>
                         </table>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>

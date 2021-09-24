@@ -25,3 +25,11 @@ pre{
 	font-size: 15px;
 	font-family:sans-serif;
 }
+
+.icw {
+	color: white !important;
+}
+
+.custom-select {
+	width: 80px !important;
+}
