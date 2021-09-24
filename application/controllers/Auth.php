@@ -11,6 +11,11 @@ class Auth extends CI_Controller
         $this->load->model('Identitas_model');
     }
 
+    public function index()
+    {
+        $this->indexSiswa();
+    }
+
     public function indexSiswa()
     {
         $data['title'] = 'User Login';
