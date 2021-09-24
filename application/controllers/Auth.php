@@ -92,13 +92,21 @@ class Auth extends CI_Controller
             foreach ($query as $row) {
                 $id = $row->id;
             }
+<<<<<<< HEAD
             $akun = $this->Identitas_model->cekAkunSiswa($id);
+=======
+            $akun = $this->Identitas_model->cekAkunMurid($id);
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
             foreach ($akun as $a) {
                 $password = $a->password;
             }
             if ($password) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIS sudah digunakan</div>');
+<<<<<<< HEAD
                 redirect('auth/indexSiswa');
+=======
+                redirect('auth');
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
             } else {
                 if ($nis) {
                     $data = [
@@ -110,10 +118,17 @@ class Auth extends CI_Controller
                     $this->db->where('id', $id);
                     $this->db->update('user', $data);
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat!, Akun anda telah dibuat, Silahkan Login!</div>');
+<<<<<<< HEAD
                     redirect('auth/indexSiswa');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIS belum terdaftar</div>');
                     redirect('auth/indexSiswa');
+=======
+                    redirect('auth');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIS belum terdaftar</div>');
+                    redirect('auth');
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
                 }
             }
         }
@@ -167,6 +182,7 @@ class Auth extends CI_Controller
             redirect('auth/loginGuru');
         }
     }
+<<<<<<< HEAD
 
     public function registrationGuru()
     {
@@ -189,6 +205,30 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
 
+=======
+
+    public function registrationGuru()
+    {
+        $data['title'] = 'User Registration';
+
+        $this->form_validation->set_rules('nip', 'NIP', 'required|trim', [
+            'required' => 'NIS tidak boleh kosong'
+        ]);
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+            'required' => 'Email tidak boleh kosong',
+            'valid_email' => 'Email tidak valid',
+            'is_unique' => 'Email ini sudah penah digunakan!'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[4]|matches[password2]', [
+            'required' => 'Password tidak boleh kosong',
+            'min_length' => 'Password harus lebih dari 4 karakter!',
+            'matches' => 'Password dan Konfirmasi Password tidak sama!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[4]|matches[password]');
+
+        if ($this->form_validation->run() == false) {
+
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
             $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/registration_guru');
             $this->load->view('templates/auth_footer');
@@ -241,4 +281,17 @@ class Auth extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda telah Logout!</div>');
         redirect('auth/indexGuru');
     }
+<<<<<<< HEAD
 }
+=======
+
+    public function logoutGuru()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda telah Logout!</div>');
+        $this->session->unset_userdata('message');
+        redirect('auth/indexGuru');
+    }
+}
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b

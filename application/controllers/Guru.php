@@ -44,7 +44,11 @@ class Guru extends CI_Controller
             $nama = $row->nama_guru;
             $image = $row->image;
             $identitas = $row->nip;
+<<<<<<< HEAD
             $kelas = $row->nama_kelas;
+=======
+            $kelas = $row->kelas;
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
             $email = $row->email;
         }
         $data['user'] = $nama;

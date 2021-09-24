@@ -5,7 +5,11 @@ class Absen_model extends CI_model
     public function getTanggal()
     {
         $bln = date('m');
+<<<<<<< HEAD
         switch ($bln) {
+=======
+        switch ($bln){
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
             case 1:
                 $bulan = 'Januari';
                 break;
@@ -48,6 +52,7 @@ class Absen_model extends CI_model
         if ($this->session->bulan && $this->session->tahun) {
             $b = $this->session->bulan;
             $t = $this->session->tahun;
+<<<<<<< HEAD
             
 
             $jumHari = cal_days_in_month(CAL_GREGORIAN, $b, $t);
@@ -63,11 +68,27 @@ class Absen_model extends CI_model
         }
         echo '</th>';
 
+=======
+            $jumHari = cal_days_in_month(CAL_GREGORIAN, $b, $t);
+            
+        }else{
+            $jumHari = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+        }
+        echo '<tr><th rowspan="2" style="vertical-align : middle;text-align:center;">Nama Kegiatan</th>';
+            echo '<th colspan="'.$jumHari.'" class="text-center">';
+             if($this->session->bulan && $this->session->tahun){
+                $this->Absen_model->getBulan($b);
+             }else{
+                echo $bulan;
+            } echo '</th>';
+        
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
         echo '</tr>';
         for ($i = 1; $i <= $jumHari; $i++) :
             if (strlen($i) == 1) {
                 $i = '0' . $i;
             }
+<<<<<<< HEAD
             if ($this->session->bulan && $this->session->tahun) {
                 $date = $i . '-' . $this->session->bulan . '-' . $this->session->tahun;
             } else {
@@ -76,6 +97,17 @@ class Absen_model extends CI_model
 
             $role = $this->session->role;
             echo '<th scope="col" class="text-center"><a href="' . base_url($role . '/isi_kegiatan/' . $date) . '"><b>' . $i . '</b></a></th>';
+=======
+            if($this->session->bulan && $this->session->tahun){
+                $date = $i . '-' . $this->session->bulan.'-'.$this->session->tahun;
+            }else{
+                $date = $i . '-' . date('m-Y');
+            }
+            
+            
+            
+            echo '<th scope="col"><a href="' . base_url('murid/isi_kegiatan/' . $date) . '"><b>' . $i . '</b></a></th>';
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
         endfor;
     }
 
@@ -101,9 +133,15 @@ class Absen_model extends CI_model
     public function getDataDetail($kegiatan, $identitas, $bln, $thn)
     {
         $i = 1;
+<<<<<<< HEAD
         if ($this->session->bulan && $this->session->tahun) {
             $jumHari = cal_days_in_month(CAL_GREGORIAN, $bln, $thn);
         } else {
+=======
+        if($this->session->bulan && $this->session->tahun){
+            $jumHari = cal_days_in_month(CAL_GREGORIAN, $bln, $thn);
+        }else{
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
             $jumHari = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
         }
         echo '<tbody>';
@@ -121,14 +159,19 @@ class Absen_model extends CI_model
         echo '</tbody>';
     }
 
+<<<<<<< HEAD
     public function getTahun($identitas)
     {
+=======
+    public function getTahun($identitas){
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
         $this->db->select('DISTINCT substring(tgl,-4) as tahun');
         $this->db->from('isi_kegiatan');
         $this->db->where('nis', $identitas);
         $this->db->order_by('tahun', 'DESC');
         $query = $this->db->get()->result();
         foreach ($query as $q) {
+<<<<<<< HEAD
             echo '<option value="' . $q->tahun . '">' . $q->tahun . '</option>';
         }
     }
@@ -138,6 +181,16 @@ class Absen_model extends CI_model
         switch ($bln) {
             case 1:
                 echo 'Januari';
+=======
+            echo '<option value="'. $q->tahun.'">'.$q->tahun.'</option>';
+        }
+    }
+
+    public function getBulan($bln){
+        switch ($bln) {
+            case 1:
+                 echo 'Januari';
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
                 break;
             case 2:
                 echo 'Februari';

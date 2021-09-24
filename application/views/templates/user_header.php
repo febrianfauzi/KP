@@ -43,10 +43,11 @@
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg nav-link-user">
                             <img alt="image" src="<?= base_url('assets/img/profile/') . $image; ?>" class="rounded-circle mr-1">
                             <div class="d-sm-none d-lg-inline-block">Hallo, <?= $user; ?></div>
                         </a>
+<<<<<<< HEAD
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- <span class="dropdown-item has-icon"> -->
                             <i class="has-icon fas fa-user ml-4"></i> <?php echo $role_id; ?>
@@ -56,6 +57,8 @@
                                 <i class="fas fa-sign-out-alt"></i> Keluar
                             </a>
                         </div>
+=======
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
                     </li>
                 </ul>
             </nav>

@@ -5,7 +5,11 @@
                 <div class="col-md-5">
                     <div class="card card-primary">
                         <div class="card-header">
+<<<<<<< HEAD
                             <h4>LOGIN UNTUK GURU</h4>
+=======
+                            <h4>Login Guru</h4>
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
                         </div>
 
                         <div class="card-body">
@@ -44,7 +48,11 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
+<<<<<<< HEAD
                             <a href="<?= base_url('auth/indexSiswa') ?>" class="btn btn-outline-primary col">Login sebagai Siswa</a>
+=======
+                            <a href="<?= base_url('auth') ?>" class="btn btn-outline-primary col">Login sebagai Siswa</a>
+>>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
                         </div>
                     </div>
                 </div>

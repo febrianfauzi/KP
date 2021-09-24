@@ -55,6 +55,14 @@ class Murid extends CI_Controller
     }
 
     public function absensi(){
+        if ($this->input->post('bulan')){
+            $data['bln'] = $this->input->post('bulan');
+            $this->session->set_userdata('bulan',$this->input->post('bulan'));
+        }
+        if ($this->input->post('tahun')) {
+            $data['thn'] = $this->input->post('tahun');
+            $this->session->set_userdata('tahun', $this->input->post('tahun'));
+        } 
         $user = $this->Identitas_model->user();
         $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
         foreach ($user as $row) {
