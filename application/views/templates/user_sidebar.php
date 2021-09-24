@@ -27,7 +27,7 @@
             <li class="menu-header">
                 <hr>
             </li>
-            <li><a class="nav-link" href="<?php echo base_url(); ?>auth/<?php if($role_id == 'guru'){echo 'logoutGuru';}else{echo 'logout';}?>"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a></li>
+            <li><a class="nav-link" href="<?= base_url('auth/logout'); ?>"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a></li>
         </ul>
     </aside>
 </div>

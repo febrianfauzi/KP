@@ -5,11 +5,7 @@
                 <div class="col-md-5">
                     <div class="card card-primary">
                         <div class="card-header">
-<<<<<<< HEAD
                             <h4>LOGIN UNTUK SISWA</h4>
-=======
-                            <h4>Login Siswa</h4>
->>>>>>> e7eeca2cd4c3f208d7d4a29f222823dc84719e3b
                         </div>
 
                         <div class="card-body">
