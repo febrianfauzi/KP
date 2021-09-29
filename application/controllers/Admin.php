@@ -17,11 +17,63 @@ class Admin extends CI_Controller
         $this->load->model('Kegiatan_model');
         $this->load->model('IsiKegiatan_model');
         $this->load->model('Identitas_model');
+        $this->load->model('Session_model');
     }
 
+    public function login(){
+        $data['title'] = 'Admin Login';
+
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email', [
+            'required' => 'Email tidak boleh kosong',
+            'valid_email' => 'Email harus valid, Contoh: @gmail.com, @yahoo.com, dll.'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim', [
+            'required' => 'Password tidak boleh kosong'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/login_admin');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $this->loginAdmin();
+        }
+    }
+
+    private function loginAdmin()
+    {
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                $data = [
+                    'email' => $user['email'],
+                    'role_id' => $user['role_id']
+                ];
+                $this->session->set_userdata($data);
+                if ($user['role_id'] == 1) {
+                    $this->session->set_userdata('role', 'admin');
+                    redirect('admin');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password salah!</div>');
+                redirect('auth/indexAdmin');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email yang digunakan belum terdaftar</div>');
+            redirect('auth/indexAdmin');
+        }
+    }
 
     public function index()
     {
+        if($this->session->role_id !== '1'){
+            redirect('admin/login');
+        }
+        
         $user = $this->Identitas_model->userAdmin();
         foreach ($user as $row) {
             $nama = $row->nama;
@@ -46,6 +98,7 @@ class Admin extends CI_Controller
 
     public function Tampil_data_kelas()
     {
+        $this->Session_model->Admin_login();
         $user = $this->Identitas_model->userAdmin();
         foreach ($user as $row) {
             $nama = $row->nama;
@@ -71,6 +124,7 @@ class Admin extends CI_Controller
 
     public function process_kelas()
     {
+        $this->Session_model->Admin_login();
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->model_kelas->add($post);
@@ -85,6 +139,7 @@ class Admin extends CI_Controller
 
     public function Tambah_data_kelas()
     {
+        $this->Session_model->Admin_login();
         $this->load->model('Data_kelas', 'model_kelas');
         $this->model_kelas->Tambah_data_kelas();
         
@@ -92,12 +147,14 @@ class Admin extends CI_Controller
 
     public function Edit_data_kelas($id)
     {
+        $this->Session_model->Admin_login();
         $this->load->model('Data_kelas', 'model_kelas');
         $this->model_kelas->Tambah_data_kelas();
     }
 
     public function Hapus_data_kelas($id)
     {
+        $this->Session_model->Admin_login();
         $this->model_kelas->Delete_kelas($id);
         $this->session->set_flashdata('message', 'Dihapus.');
         redirect('admin/Tampil_data_kelas');
@@ -105,6 +162,7 @@ class Admin extends CI_Controller
 
     public function Tampil_data_guru()
     {
+        $this->Session_model->Admin_login();
         $user = $this->Identitas_model->userAdmin();
         foreach ($user as $row) {
             $nama = $row->nama;
@@ -130,6 +188,7 @@ class Admin extends CI_Controller
 
     public function process_guru()
     {
+        $this->Session_model->Admin_login();
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->model_guru->add($post);
@@ -143,6 +202,7 @@ class Admin extends CI_Controller
 
     public function Tambah_data_guru()
     {
+        $this->Session_model->Admin_login();
         $this->load->model('Data_guru', 'model_guru');
         $this->model_guru->Tambah_data_guru();
         $this->session->set_flashdata('message', 'Ditambahkan.');
@@ -151,6 +211,7 @@ class Admin extends CI_Controller
 
     public function Edit_data_guru()
     {
+        $this->Session_model->Admin_login();
         $this->load->model('Data_guru', 'model_guru');
         $this->model_guru->Tambah_data_guru();
         
@@ -158,12 +219,14 @@ class Admin extends CI_Controller
 
     public function Hapus_data_guru($id)
     {
+        $this->Session_model->Admin_login();
         $this->model_guru->Delete_guru($id);
         $this->session->set_flashdata('message', 'Dihapus');
         redirect('admin/Tampil_data_guru');
     }
     public function Tampil_data_siswa()
     {
+        $this->Session_model->Admin_login();
         $user = $this->Identitas_model->userAdmin();
         foreach ($user as $row) {
             $nama = $row->nama;
@@ -191,6 +254,7 @@ class Admin extends CI_Controller
 
     public function process_siswa()
     {
+        $this->Session_model->Admin_login();
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->model_siswa->add($post);
@@ -205,6 +269,7 @@ class Admin extends CI_Controller
 
     public function Tambah_data_siswa()
     {
+        $this->Session_model->Admin_login();
         $this->load->model('Data_siswa', 'model_siswa');
         $this->model_siswa->Tambah_data_siswa();
         // $this->model_siswa->get_kelas2();
@@ -231,6 +296,7 @@ class Admin extends CI_Controller
 
     public function Hapus_data_siswa($id)
     {
+        $this->Session_model->Admin_login();
         $this->model_siswa->Delete_siswa($id);
         $this->session->set_flashdata('message', 'Dihapus.');
         redirect('admin/Tampil_data_siswa');
@@ -251,6 +317,7 @@ class Admin extends CI_Controller
 
     public function absensi()
     {
+        $this->Session_model->Admin_login();
 
         if ($this->input->post('bulan')) {
             $data['bln'] = $this->input->post('bulan');
@@ -286,7 +353,7 @@ class Admin extends CI_Controller
         $data['user'] = $nama;
         $data['image'] = $image;
         $data['role_id'] = 'admin';
-        $this->session->set_userdata('role','admin');
+        
         $data['title'] = 'Absensi';
         $this->load->view('templates/user_header', $data);
         $this->load->view('templates/user_sidebar', $data);
@@ -296,6 +363,7 @@ class Admin extends CI_Controller
 
     public function isi_kegiatan($tgl)
     {
+        $this->Session_model->Admin_login();
         $user = $this->Identitas_model->userAdmin();
         foreach ($user as $row) {
             $nama = $row->nama;

@@ -4,6 +4,7 @@ class Identitas_model extends CI_model
 {
     public function user(){
         $this->db->select('*');
+        $this->db->select('siswa.id as id_siswa');
         $this->db->from('user');
         $this->db->join('siswa', 'user.id= siswa.id');
         $this->db->join('kelas', 'siswa.id_kelas= kelas.id');
@@ -24,6 +25,7 @@ class Identitas_model extends CI_model
     public function userGuru()
     {
         $this->db->select('*');
+        $this->db->select('guru.id as id_guru');
         $this->db->from('user');
         $this->db->join('guru', 'user.id= guru.id');
         $this->db->join('kelas', 'guru.id_kelas= kelas.id');

@@ -72,45 +72,45 @@
                 </div>
                 <div class="card-body">
                     <!-- <div class="table-responsive"> -->
-                        <table class="table datatables" id="datatables">
-                            <thead>
-                                <tr class="text-center">
-                                    <th width="5%">No</th>
-                                    <th width="30%">Nama Kegiatan</th>
-                                    <th widht="50%">Keterangan</th>
-                                    <th width="15%">Action</th>
+                    <table class="table table-hover table-bordered dt-responsive" id="datatables" style="width: 100%;">
+                        <thead>
+                            <tr class="text-center">
+                                <th width="5%">No</th>
+                                <th width="30%">Nama Kegiatan</th>
+                                <th widht="50%">Keterangan</th>
+                                <th width="15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (empty($kegiatan)) : ?>
+                                <tr>
+                                    <td colspan="3">
+                                        <div class="alert alert-danger mt-3" role="alert">
+                                            Data kegiatan tidak ditemukan
+                                        </div>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (empty($kegiatan)) : ?>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div class="alert alert-danger mt-3" role="alert">
-                                                Data kegiatan tidak ditemukan
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endif; ?>
-                                <?php
-                                $i = 1;
-                                foreach ($kegiatan as $row) : ?>
-                                    <tr>
-                                        <td><?php echo $i++; ?></td>
-                                        <td>
-                                            <pre><?= $row['nama_kegiatan'] ?></pre>
-                                        </td>
-                                        <td>
-                                            <pre><?= $row['ket'] ?></pre>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="<?= base_url(); ?>guru/ubahKegiatan/<?= $row['id']; ?>" class="btn btn-info btn-sm" data-toggle="tooltip" title="Edit"><i class="fas fa-pen"></i></a>
-                                            <a href="<?= base_url(); ?>guru/hapusKegiatan/<?= $row['id']; ?>" class="btn btn-danger btn-sm tombol-hapus" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
+                            <?php endif; ?>
+                            <?php
+                            $i = 1;
+                            foreach ($kegiatan as $row) : ?>
+                                <tr>
+                                    <td><?php echo $i++; ?></td>
+                                    <td>
+                                        <pre><?= $row['nama_kegiatan'] ?></pre>
+                                    </td>
+                                    <td>
+                                        <pre><?= $row['ket'] ?></pre>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="<?= base_url(); ?>guru/ubahKegiatan/<?= $row['id']; ?>" class="btn btn-info" data-toggle="tooltip" title="Edit"><i class="fas fa-pen"></i></a>
+                                        <a href="<?= base_url(); ?>guru/hapusKegiatan/<?= $row['id']; ?>" class="btn btn-danger tombol-hapus" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
 
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
                     <!-- </div> -->
                 </div>
             </div>

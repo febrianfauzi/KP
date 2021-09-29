@@ -4,7 +4,8 @@ class Session_model extends CI_model
 {
     public function Admin_login(){
         if($this->session->role_id !== '1'){
-            
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Harap Login Terlebih Dahulu</div>');
+            redirect('admin/login');
         }
     }
 

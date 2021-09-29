@@ -30,6 +30,8 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/custom.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -44,12 +46,12 @@
                 </form>
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="<?= base_url('assets/img/profile/') . $image; ?>" class="rounded-circle mr-1">
+                            <img alt="image" src="<?= base_url(); ?>assets/photo/<?= $image; ?>" class="rounded-circle mr-1" style="width: 30px; height:30px; border:1px white solid;">
                             <div class="d-sm-none d-lg-inline-block">Hallo, <?= $user; ?></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- <span class="dropdown-item has-icon"> -->
-                            <i class="has-icon fas fa-user ml-4"></i> <?php echo $role_id; ?>
+                            <i class="has-icon fas fa-user ml-4"></i> <span class="ml-2" style="text-transform: capitalize;"><?php echo $role_id; ?></span>
                             <!-- </span> -->
                             <div class="dropdown-divider"></div>
                             <a href="<?= base_url('auth/logout'); ?>" class="dropdown-item has-icon text-danger">

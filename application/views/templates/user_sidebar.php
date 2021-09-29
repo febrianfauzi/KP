@@ -27,7 +27,7 @@
             <li class="menu-header">
                 <hr>
             </li>
-            <li><a class="nav-link" href="<?= base_url('auth/logout'); ?>"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a></li>
+            <li><a class="nav-link" href="<?= base_url('auth/logout_'.$this->session->role); ?>"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a></li>
         </ul>
     </aside>
 </div>

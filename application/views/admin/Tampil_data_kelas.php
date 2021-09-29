@@ -9,7 +9,7 @@
     </div>
   </section>
   <div class="row">
-    <div class="col-3">
+    <div class="col">
       <button id="tambahkelas" class="btn btn-success" data-toggle="modal" data-target="#modal-tambah-kelas"><i class="fas fa-plus"> Tambah data</i></button>
     </div>
   </div>

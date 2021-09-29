@@ -38,15 +38,15 @@
                   <td><?= $data->nama_siswa ?></td>
                   <td><?= $data->nama_kelas ?></td>
                   <td>
-                    <span title="Detail" data-toggle="tooltip">
-                      <a id="detsiswa" class="btn btn-info mb-1" data-toggle="modal" data-target="#modal-detsiswa" data-nis="<?= $data->nis ?>" data-nama="<?= $data->nama_siswa ?>" data-kelas="<?= $data->nama_kelas ?>" data-email="<?= $data->email ?>" data-alamat="<?= $data->alamat ?>">
-                        <i class="fa fa-eye icw"></i></a></span>
-                    <span title="Edit" data-toggle="tooltip">
-                      <a id="editsiswa" class="btn btn-primary mb-1" data-toggle="modal" data-target="#modal-editsiswa" data-id="<?= $data->id ?>" data-nama="<?= $data->nama_siswa ?>" data-id_kelas="<?= $data->id_kelas ?>" data-email="<?= $data->email ?>" data-alamat="<?= $data->alamat ?>">
-                        <i class="fa fa-pencil-alt icw"></i></a></span>
-                    <span title="Hapus" data-toggle="tooltip">
-                      <a href="<?= site_url('guru/Hapus_data_siswa/' . $data->id) ?>" class="btn btn-danger mb-1 tombol-hapus"><i class="fa fa-trash icw"></i></a>
-                    </span>
+
+                    <a id="detsiswa" data-toggle="modal" data-target="#modal-detsiswa" data-nis="<?= $data->nis ?>" data-nama="<?= $data->nama_siswa ?>" data-kelas="<?= $data->nama_kelas ?>" data-email="<?= $data->email ?>" data-alamat="<?= $data->alamat ?>">
+                      <button class="btn btn-info mb-1" title="Detail" data-toggle="tooltip"><i class="fa fa-eye icw"></i></button></a>
+
+                    <a id="editsiswa" data-toggle="modal" data-target="#modal-editsiswa" data-id="<?= $data->id ?>" data-nama="<?= $data->nama_siswa ?>" data-id_kelas="<?= $data->id_kelas ?>" data-email="<?= $data->email ?>" data-alamat="<?= $data->alamat ?>">
+                      <button class="btn btn-primary mb-1" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil-alt icw"></i></button></a>
+
+                    <a href="<?= site_url('guru/Hapus_data_siswa/' . $data->id) ?>"><button title="Hapus" data-toggle="tooltip" class="btn btn-danger mb-1 tombol-hapus"><i class="fa fa-trash icw"></i></button></a>
+
                   </td>
                 </tr>
 
@@ -221,7 +221,7 @@
           </tbody>
         </table>
         <hr>
-        <form action="<?= base_url('guru/absensi');?>" method="post">
+        <form action="<?= base_url('guru/absensi'); ?>" method="post">
           <input type="hidden" name="nis" id="siswa">
           <button class="btn btn-success float-right">Lihat Absen</button>
         </form>

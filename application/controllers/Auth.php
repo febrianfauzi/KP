@@ -11,8 +11,7 @@ class Auth extends CI_Controller
         $this->load->model('Identitas_model');
     }
 
-    public function index()
-    {
+    public function index(){
         $this->indexSiswa();
     }
 
@@ -33,27 +32,27 @@ class Auth extends CI_Controller
             $this->load->view('auth/login');
             $this->load->view('templates/auth_footer');
         } else {
-            $this->_login();
+            $this->loginSiswa();
         }
     }
 
-    private function _login()
+    private function loginSiswa()
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-        if ($user) {
+        if($user['role_id'] == 3) {
             if (password_verify($password, $user['password'])) {
                 $data = [
                     'email' => $user['email'],
                     'role_id' => $user['role_id']
                 ];
                 $this->session->set_userdata($data);
-                if ($user['role_id'] == 1) {
-                    redirect('admin');
-                } else {
+                if ($user['role_id'] == 3) {
+                    $this->session->set_userdata('role', 'siswa');
+                    $this->session->set_userdata('photo', $user['image']);
                     redirect('siswa');
                 }
             } else {
@@ -158,9 +157,9 @@ class Auth extends CI_Controller
                     'role_id' => $user['role_id']
                 ];
                 $this->session->set_userdata($data);
-                if ($user['role_id'] == 1) {
-                    redirect('admin');
-                } elseif ($user['role_id'] == 2) {
+                if ($user['role_id'] == 2) {
+                    $this->session->set_userdata('role', 'guru');
+                    $this->session->set_userdata('photo', $user['image']);
                     redirect('guru');
                 }
             } else {
@@ -231,19 +230,109 @@ class Auth extends CI_Controller
         }
     }
 
-    public function logout()
+    public function lupa_password_siswa(){
+        $data['title'] = 'Lupa Password';
+        $data['role'] = '3';
+        $this->load->view('templates/auth_header', $data);
+        $this->load->view('auth/lupa_password');
+        $this->load->view('templates/auth_footer');
+    }
+
+    public function lupa_password_guru()
+    {
+        $data['title'] = 'Lupa Password';
+        $data['role'] = '2';
+        $this->load->view('templates/auth_header', $data);
+        $this->load->view('auth/lupa_password');
+        $this->load->view('templates/auth_footer');
+    }
+
+    public function email_confirm(){
+        $email = $this->input->post('email',true);
+        $role = $this->input->post('role',true);
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if($user['role_id'] == $role){
+            $data['title'] = 'Lupa Password';
+            $data['id'] = $user['id'];
+            $data['role'] = $role;
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/password_baru');
+            $this->load->view('templates/auth_footer');
+        }else{
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email tidak terdaftar</div>');
+            if($role == 3){
+                redirect('auth/lupa_password_siswa');
+            }else{
+                redirect('auth/lupa_password_guru');
+            }
+        }
+    }
+
+    public function change_password(){
+        $data['title'] = 'Lupa Password';
+        $id = $this->input->post('id',true);
+        $data['id'] = $id;
+        $role = $this->input->post('role', true);
+        $data['role'] = $role;
+        $password1 = $this->input->post('password1',true);
+        $password2 = $this->input->post('password2',true);
+
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[4]|matches[password2]', [
+            'required' => 'Password tidak boleh kosong',
+            'min_length' => 'Password harus lebih dari 4 karakter !',
+            'matches' => 'Password dan Konfirmasi Password tidak sama !'
+        ]);
+        $this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[4]|matches[password1]');
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/password_baru');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $data = array(
+                'password' => password_hash($password1, PASSWORD_DEFAULT),
+            );
+            $this->db->where('id', $id);
+            $this->db->update('user', $data);
+
+            $data['title'] = 'Lupa Password';
+            $data['role'] = $role;
+            $this->load->view('templates/auth_header',$data);
+            $this->load->view('auth/pass_success');
+            $this->load->view('templates/auth_footer');
+        }
+    }
+
+    public function logout_siswa()
     {
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
+        $this->session->unset_userdata('role');
+        $this->session->unset_userdata('photo');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda telah Logout!</div>');
         redirect('auth/indexSiswa');
     }
 
-    public function logoutGuru()
+    public function logout_guru()
     {
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
+        $this->session->unset_userdata('role');
+        $this->session->unset_userdata('photo');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda telah Logout!</div>');
         redirect('auth/indexGuru');
+    }
+
+    public function logout_admin()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+        $this->session->unset_userdata('role');
+        $this->session->unset_userdata('photo');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda telah Logout!</div>');
+        redirect('admin/login');
     }
 }
