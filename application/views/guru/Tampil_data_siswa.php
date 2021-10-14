@@ -8,11 +8,11 @@
       <h1>Data Siswa</h1>
     </div>
   </section>
-  <div class="row">
+  <!-- <div class="row">
     <div class="col">
       <a id="tambahsiswa" class="btn btn-success icw" data-toggle="modal" data-target="#modal-tambah-siswa"><i class="fas fa-plus icw"></i> Tambah data</a>
     </div>
-  </div>
+  </div> -->
   <div class="row">
     <div class="col-12 mt-4">
       <div class="card">
@@ -70,7 +70,7 @@
         <div class="modal-header">
           <h5 class="modal-title">Update Data Siswa</h5>
         </div>
-        <form class="form-horizontal" action="<?= site_url('admin/process_siswa') ?>" method="post" enctype="multipart/form-data" role="form">
+        <form class="form-horizontal" action="<?= site_url('guru/process_siswa') ?>" method="post" enctype="multipart/form-data" role="form">
           <div class="modal-body">
 
             <div class="form-group">
@@ -223,7 +223,7 @@
         <hr>
         <form action="<?= base_url('guru/absensi'); ?>" method="post">
           <input type="hidden" name="nis" id="siswa">
-          <button class="btn btn-success float-right">Lihat Absen</button>
+          <button class="btn btn-success float-right">Lihat Kegiatan</button>
         </form>
       </div>
     </div>

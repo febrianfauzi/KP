@@ -46,16 +46,19 @@ class Siswa extends CI_Controller
             $kelas = $row->nama_kelas;
             $id = $row->id_siswa;
             $id_kelas = $row->id_kelas;
+            $alamat = $row->alamat;
         }
         $data['user'] = $nama;
         $data['image'] = $image;
         $data['email'] = $email;
         $data['kelas'] = $kelas;
+        $data['alamat'] = $alamat;
         $data['identitas'] = $identitas;
         $data['id'] = $id;
         $data['id_kelas'] = $id_kelas;
         $data['role_id'] = 'siswa';
         $data['title'] = 'Profil siswa';
+        $this->session->set_userdata('photo', $image);
 
         $this->load->view('templates/user_header', $data);
         $this->load->view('templates/user_sidebar', $data);
@@ -75,13 +78,15 @@ class Siswa extends CI_Controller
             $this->session->set_userdata('tahun', $this->input->post('tahun'));
         }
         $user = $this->Identitas_model->user();
-        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        
         foreach ($user as $row) {
             $nama = $row->nama_siswa;
             $image = $row->image;
             $identitas = $row->nis;
             $kelas = $row->nama_kelas;
+            $id_kelas = $row->id_kelas;
         }
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan($id_kelas);
         $data['kelas'] = $kelas;
         $data['user'] = $nama;
         $data['image'] = $image;
@@ -168,10 +173,12 @@ class Siswa extends CI_Controller
         $nama = $this->input->post('nama', true);
         $id_kelas = $this->input->post('kelas', true);
         $email = $this->input->post('email', true);
+        $alamat = $this->input->post('alamat', true);
 
         $data = array(
             'nama_siswa' => $nama,
-            'id_kelas' => $id_kelas
+            'id_kelas' => $id_kelas,
+            'alamat' => $alamat
         );
         $this->db->where('id', $id);
         $this->db->update('siswa', $data);
@@ -195,6 +202,7 @@ class Siswa extends CI_Controller
             $nama = $row->nama_siswa;
             $image = $row->image;
             $identitas = $row->nis;
+            $id_kelas = $row->id_kelas;
         }
         $data['tgl'] = $tgl;
         $data['user'] = $nama;
@@ -202,7 +210,7 @@ class Siswa extends CI_Controller
         $data['identitas'] = $identitas;
         $data['role_id'] = 'siswa';
         $data['title'] = 'Isi Kegiatan siswa';
-        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan($id_kelas);
 
         $this->load->view('templates/user_header', $data);
         $this->load->view('templates/user_sidebar', $data);

@@ -52,7 +52,7 @@ class Auth extends CI_Controller
                 $this->session->set_userdata($data);
                 if ($user['role_id'] == 3) {
                     $this->session->set_userdata('role', 'siswa');
-                    $this->session->set_userdata('photo', $user['image']);
+                    // $this->session->set_userdata('photo', $user['image']);
                     redirect('siswa');
                 }
             } else {
@@ -91,6 +91,7 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer');
         } else {
             $nis = $this->db->get_where('siswa', ['nis' => $this->input->post('nis')])->row_array();
+            
             $this->db->where('nis', $this->input->post('nis', true));
             $query = $this->db->get('siswa')->result();
             foreach ($query as $row) {
@@ -159,7 +160,7 @@ class Auth extends CI_Controller
                 $this->session->set_userdata($data);
                 if ($user['role_id'] == 2) {
                     $this->session->set_userdata('role', 'guru');
-                    $this->session->set_userdata('photo', $user['image']);
+                    // $this->session->set_userdata('photo', $user['image']);
                     redirect('guru');
                 }
             } else {

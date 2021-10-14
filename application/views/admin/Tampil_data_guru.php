@@ -37,15 +37,12 @@
                   <td><?= $data->nama_guru ?></td>
                   <td><?= $data->nama_kelas ?></td>
                   <td>
-                    <span data-toggle="tooltip" title="Detail">
-                      <a id="detguru" class="btn btn-info mb-1" data-toggle="modal" data-target="#modal-detguru" data-nip="<?= $data->nip ?>" data-nama_guru="<?= $data->nama_guru ?>" data-kelas="<?= $data->nama_kelas ?>" data-email="<?= $data->email ?>" data-alamat="<?= $data->alamat ?>">
-                        <i class="fa fa-eye icw"></i></a></span>
-                    <span data-toggle="tooltip" title="Edit">
-                      <a id="editguru" class="btn btn-primary mb-1" title="Detail" data-toggle="modal" data-target="#modal-editguru" data-id="<?= $data->id ?>" data-nama="<?= $data->nama_guru ?>" data-id_kelas="<?= $data->id_kelas ?>" data-email="<?= $data->email ?>" data-alamat="<?= $data->alamat ?>">
-                        <i class="fa fa-pencil-alt icw"></i></a></span>
-                    <span data-toggle="tooltip" title="Hapus">
-                      <a href="<?= site_url('admin/Hapus_data_guru/' . $data->id) ?>" class="btn btn-danger mb-1 tombol-hapus">
-                        <i class="fa fa-trash icw"></i></a></span>
+
+                    <a id="detguru" data-toggle="modal" data-target="#modal-detguru" data-nip="<?= $data->nip ?>" data-nama_guru="<?= $data->nama_guru ?>" data-kelas="<?= $data->nama_kelas ?>" data-email="<?= $data->email ?>" data-alamat="<?= $data->alamat ?>">
+                      <button class="btn btn-info mb-1" data-toggle="tooltip" title="Detail"><i class="fa fa-eye icw"></i></button></a>
+                    <a id="editguru" data-toggle="modal" data-target="#modal-editguru" data-id="<?= $data->id ?>" data-nama="<?= $data->nama_guru ?>" data-id_kelas="<?= $data->id_kelas ?>" data-email="<?= $data->email ?>" data-alamat="<?= $data->alamat ?>">
+                      <button class="btn btn-primary mb-1" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-alt icw"></i></button></a>
+                    <a href="<?= site_url('admin/Hapus_data_guru/' . $data->id); ?>" class="btn btn-danger mb-1 tombol-hapus" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash icw"></i></a>
                   </td>
                 </tr>
               <?php } ?>
@@ -102,13 +99,13 @@
             <div class="form-group">
               <label class="col-lg-2 col-sm-2 control-label">Email</label>
               <div class="col-lg-10">
-                <input type="text" class="form-control" id="email" name="email" placeholder="email" value="<?= $data->email ?>">
+                <input type="text" class="form-control" id="email" name="email" value="<?= $data->email ?>">
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 col-sm-2 control-label">Alamat</label>
               <div class="col-lg-10">
-                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="alamat" value="<?= $data->alamat ?>">
+                <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $data->alamat ?>">
               </div>
             </div>
 

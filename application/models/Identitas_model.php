@@ -42,7 +42,7 @@ class Identitas_model extends CI_model
         return $this->db->get()->result();
     }
 
-    public function cekAkunMurid($id){
+    public function cekAkunSiswa($id){
         $this->db->select('*');
         $this->db->from('user');
         $this->db->join('siswa', 'user.id= siswa.id');
@@ -58,4 +58,6 @@ class Identitas_model extends CI_model
         $this->db->where('user.id', $id);
         return $this->db->get()->result();
     }
+
+  
 }

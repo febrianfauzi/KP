@@ -17,21 +17,27 @@
                     </div>
                     <div class="row">
                         <div class="author-box-left col-md-2">
-                            <div class="gambar mx-auto" style="overflow: hidden; border-radius:50%; width:200px; height:200px; border: 1px solid lightgray;">
-                                <img alt="image" src="<?= base_url(); ?>assets/photo/<?= $this->session->photo; ?>" style="width: 100%; height:auto;">
+                            <div class="gambar" style="overflow: hidden; border-radius:50%; border: 1px solid lightgray;">
+                                <img alt="image" src="<?= base_url(); ?>assets/photo/<?= $image; ?>" style="width: 100%; height:auto;">
                             </div>
                             <div class="clearfix"></div>
-                            <a href="#" class="btn btn-primary col-md-8 mx-auto mt-2" data-toggle="modal" data-target="#gantiPhoto">Ganti</a>
+                            <a href="#" class="btn btn-primary col-md-8 mt-2" data-toggle="modal" data-target="#gantiPhoto">Ganti</a>
                         </div>
-                        <div class="col mt-3">
+                        <div class="col">
                             <small>Nama :</small>
-                            <h4><?= $user; ?></h4>
+                            <h6><?= $user; ?></h6>
                             <small>NIS :</small>
                             <h6><?= $identitas; ?></h6>
-                            <small>Walikelas :</small>
+                            <small>Kelas :</small>
                             <h6><?= $kelas; ?></h6>
                             <small>Email :</small>
                             <h6><?= $email; ?></h6>
+                            <small>Alamat :</small>
+                            <h6><?php if (!$alamat) {
+                                    echo '<span style="color:red;">Belum diisi</span>';
+                                } else {
+                                    echo $alamat;
+                                }; ?></h6>
                             <div class="w-100 d-sm-none"></div>
                         </div>
                     </div>
@@ -128,7 +134,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('siswa/gantiProfile');?>" method="POST" class="needs-validation" novalidate>
+                <form action="<?= base_url('siswa/gantiProfile'); ?>" method="POST" class="needs-validation" novalidate>
                     <input type="hidden" name="id" value="<?= $id; ?>">
                     <div class="form-group">
                         <label>Nama</label>
@@ -156,6 +162,13 @@
                         <input type="email" class="form-control" name="email" value="<?= $email; ?>" required>
                         <div class="invalid-feedback">
                             Email Harus Diisi.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <input type="text" class="form-control" name="alamat" value="<?= $alamat; ?>" required>
+                        <div class="invalid-feedback">
+                            Alamat Harus Diisi.
                         </div>
                     </div>
 

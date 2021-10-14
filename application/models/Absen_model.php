@@ -54,7 +54,7 @@ class Absen_model extends CI_model
         } else {
             $jumHari = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
         }
-        echo '<tr><th rowspan="2" style="vertical-align : middle;text-align:center;">Nama Kegiatan</th>';
+        echo '<tr><th rowspan="2" style="vertical-align : middle;text-align:center; width:2%;">Nama Kegiatan</th>';
         echo '<th colspan="' . $jumHari . '" class="text-center">';
         if ($this->session->bulan && $this->session->tahun) {
             $this->Absen_model->getBulan($b);
@@ -86,7 +86,7 @@ class Absen_model extends CI_model
         echo '<tbody>';
         foreach ($kegiatan as $row) :
             echo '<tr>
-                    <td scope="row"><pre>' . $row['nama_kegiatan'] . '</pre></td>';
+                    <td class="tx"  scope="row" style="width:25%;">' . $row['nama_kegiatan'] . '</td>';
             for ($j = 1; $j <= $jumHari; $j++) :
                 if (strlen($j) == 1) {
                     $j = '0' . $j;
@@ -109,7 +109,7 @@ class Absen_model extends CI_model
         echo '<tbody>';
         foreach ($kegiatan as $row) :
             echo '<tr>
-                    <td scope="row"><pre>' . $row['nama_kegiatan'] . '</pre></td>';
+                    <td class="tx" scope="row" style="width:25%;">' . $row['nama_kegiatan'] . '</td>';
             for ($j = 1; $j <= $jumHari; $j++) :
                 if (strlen($j) == 1) {
                     $j = '0' . $j;

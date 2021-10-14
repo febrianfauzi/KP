@@ -17,7 +17,7 @@
     <div class="col-12 mt-4">
       <div class="card">
         <div class="card-body">
-          <table class="table datatables" id="datatables">
+          <table class="table table-bordered table-striped datatables" id="datatables">
             <thead>
               <tr>
                 <th scope="col">Nama Kelas</th>

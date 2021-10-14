@@ -16,7 +16,7 @@
         <div class="section-header">
             <div class="row col">
                 <div class="col">
-                    <h1>Absensi Murid</h1>
+                    <h1>Kegiatan Siswa</h1>
                 </div>
                 <div class="col-md-1"><a href="<?= base_url('guru/Tampil_data_siswa'); ?>"><button class="btn btn-info float-right">Kembali</button></a></div>
             </div>
@@ -109,7 +109,7 @@
                 </div>
             </div>
 
-            <table class="table table-sm table-responsive-lg table-responsive-md table-responsive-sm table-hover table-bordered">
+            <table class="table table-sm table-responsive-lg table-hover table-bordered">
                 <thead class="bg-light">
                     <?php
                     if ($this->session->bulan && $this->session->tahun) {

@@ -7,7 +7,13 @@
     </section>
     <div class="row">
         <div class="col">
-            
+            <div class="card">
+                <div class="card-body">
+                    <h4>Selamat Datang <?= $user; ?></h4>
+                    <hr>
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>

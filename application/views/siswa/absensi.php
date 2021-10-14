@@ -6,6 +6,46 @@
     .red {
         color: red !important;
     }
+
+    @media (max-width: 576px) {
+
+        table.tb {
+            font-size: 12px;
+        }
+    }
+
+    @media (min-width: 768px) {
+
+
+        table.tb {
+            font-size: 12px;
+        }
+
+    }
+
+    @media (min-width: 992px) {
+
+
+        table.tb {
+            font-size: 12px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+
+        table.tb {
+            font-size: 12px;
+        }
+    }
+
+    @media (min-width: 1400px) {
+
+        table.tb {
+            font-size: 18px;
+        }
+    }
+
+
 </style>
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 <div class="m-content" data-content="Isi Kegiatan"></div>
@@ -14,7 +54,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Absensi Siswa</h1>
+            <h1>Kegiatan Siswa</h1>
         </div>
     </section>
     <div class="card">
@@ -102,8 +142,7 @@
                     </p>
                 </div>
             </div>
-
-            <table class="table table-sm table-responsive-lg table-responsive-md table-responsive-sm table-hover table-bordered">
+            <table class="table table-sm table-responsive-xl table-responsive-lg table-responsive-md table-responsive-sm table-hover table-bordered tb">
                 <thead class="bg-light">
                     <?php
                     if ($this->session->bulan && $this->session->tahun) {

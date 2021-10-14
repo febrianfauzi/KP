@@ -2,8 +2,9 @@
 
 class Kegiatan_model extends CI_model
 {
-    public function getAllKegiatan()
+    public function getAllKegiatan($id)
     {
+        $this->db->where('id_kelas',$id);
         return $this->db->get('kegiatan')->result_array();
     }
 
@@ -13,6 +14,7 @@ class Kegiatan_model extends CI_model
             'id' => null,
             'nama_kegiatan' => $this->input->post('nama', true),
             'ket' => $this->input->post('ket', true),
+            'id_kelas' => $this->input->post('id_kelas', true),
         );
         $this->db->insert('kegiatan', $data);
     }

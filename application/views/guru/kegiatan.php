@@ -23,6 +23,7 @@
                         <?php if (isset($Ukegiatan)) : ?>
                             <input type="hidden" name="id" value="<?= $Ukegiatan['id']; ?>">
                         <?php endif; ?>
+                        <input type="hidden" name="id_kelas" value="<?= $id_kelas;?>">
                         <div class="form-group">
                             <label>Nama Kegiatan</label>
                             <textarea class="form-control" style="height: 100px;" name="nama"><?php if (isset($Ukegiatan)) {
@@ -82,15 +83,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (empty($kegiatan)) : ?>
-                                <tr>
-                                    <td colspan="3">
-                                        <div class="alert alert-danger mt-3" role="alert">
-                                            Data kegiatan tidak ditemukan
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
                             <?php
                             $i = 1;
                             foreach ($kegiatan as $row) : ?>

@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Title Web</a>
+            <a href="index.html">Sistem Kegiatan</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">[=]</a>
+            <a href="index.html">SK</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Daftar Menu</li>
@@ -19,7 +19,7 @@
                 <li><a class="nav-link" href="<?= base_url('guru/kegiatan'); ?>"><i class="fas fa-tasks"></i><span>Kegiatan</span></a></li>
             <?php endif ?>
             <?php if ($role_id == 'siswa') : ?>
-                <li><a class="nav-link" href="<?= base_url('siswa/absensi'); ?>"><i class="fas fa-tasks"></i> <span>Absensi</span></a></li>
+                <li><a class="nav-link" href="<?= base_url('siswa/absensi'); ?>"><i class="fas fa-tasks"></i> <span>Kegiatan Siswa</span></a></li>
             <?php endif ?>
             <?php if ($role_id != 'admin') : ?>
                 <li><a class="nav-link" href="<?= base_url($role_id . '/profile'); ?>"><i class="far fa-user"></i> <span>Profil</span></a></li>

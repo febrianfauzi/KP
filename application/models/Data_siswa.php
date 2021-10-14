@@ -15,6 +15,17 @@ class Data_siswa extends CI_model
         $query = $this->db->get()->result();
         return $query;
     }
+
+    public function getSiswa($id_kelas)
+    {
+
+
+        $this->db->select('s.*, u.*,k.nama_kelas AS nama_kelas')->from('siswa AS s')->join('user AS u', 's.id=u.id')->join('kelas AS k', 's.id_kelas=k.id');
+        $this->db->where('s.id_kelas', $id_kelas);
+        $this->db->order_by('s.id', 'desc');
+        $query = $this->db->get()->result();
+        return $query;
+    }
     
     public function getkelas(){
         return $this->db->select('*')->from('kelas')->get()->result_array();        
@@ -51,8 +62,6 @@ class Data_siswa extends CI_model
         
         //insert db
         $this->db->insert('siswa', $siswa);
-
-        
         
         $this->db->trans_complete();
         
@@ -63,7 +72,6 @@ class Data_siswa extends CI_model
     {
         $this->db->trans_start();
     
-
         $where1 = array('id' => $this->input->post('id'));
         $data1 = array(
                 'nama_siswa'=>$this->input->post('nama'),

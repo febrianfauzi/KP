@@ -14,12 +14,12 @@
                                 <input type="hidden" name="role" value="<?= $role; ?>">
                                 <div class="form-group">
                                     <label for="password1">Masukan Password</label>
-                                    <input id="password1" type="text" class="form-control" name="password1" tabindex="1">
+                                    <input id="password1" type="password" class="form-control" name="password1" tabindex="1">
                                     <?php echo form_error('password1', '<small class="text-danger">', '</small>'); ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="password2">Konfirmasi Password</label>
-                                    <input id="password2" type="text" class="form-control" name="password2" tabindex="2">
+                                    <input id="password2" type="password" class="form-control" name="password2" tabindex="2">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">

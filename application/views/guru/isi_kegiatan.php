@@ -56,29 +56,3 @@
 </div>
 
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-<script script>
-    $.fn.datepicker.dates['id'] = {
-        days: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
-        daysShort: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
-        daysMin: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
-        months: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
-        monthsShort: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
-        today: "Hari ini",
-        clear: "Clear",
-        format: "mm/dd/yyyy",
-        titleFormat: "MM yyyy",
-        /* Leverages same syntax as 'format' */
-        weekStart: 0
-    };
-
-    $('.datepicker').datepicker({
-        format: 'dd-mm-yyyy',
-        autoclose: true,
-        daysOfWeekDisabled: [0, 6],
-        language: 'id',
-        clearBtn: true,
-        disableTouchKeyboard: true
-    });
-</script>

@@ -50,16 +50,19 @@ class Guru extends CI_Controller
             $email = $row->email;
             $id = $row->id_guru;
             $id_kelas = $row->id_kelas;
+            $alamat = $row->alamat;
         }
         $data['user'] = $nama;
         $data['image'] = $image;
         $data['identitas'] = $identitas;
         $data['kelas'] = $kelas;
         $data['email'] = $email;
+        $data['alamat'] = $alamat;
         $data['id'] = $id;
         $data['id_kelas'] = $id_kelas;
         $data['role_id'] = 'guru';
         $data['title'] = 'Profil Guru';
+        $this->session->set_userdata('photo', $image);
 
         $this->load->view('templates/user_header', $data);
         $this->load->view('templates/user_sidebar', $data);
@@ -139,10 +142,12 @@ class Guru extends CI_Controller
         $nama = $this->input->post('nama', true);
         $id_kelas = $this->input->post('kelas', true);
         $email = $this->input->post('email', true);
+        $alamat = $this->input->post('alamat', true);
 
         $data = array(
             'nama_guru' => $nama,
-            'id_kelas' => $id_kelas
+            'id_kelas' => $id_kelas,
+            'alamat' => $alamat
         );
         $this->db->where('id', $id);
         $this->db->update('guru', $data);
@@ -184,12 +189,14 @@ class Guru extends CI_Controller
         foreach ($user as $row) {
             $nama = $row->nama_guru;
             $image = $row->image;
+            $id_kelas = $row->id_kelas;
         }
         $data['user'] = $nama;
         $data['image'] = $image;
+        $data['id_kelas'] = $id_kelas;
         $data['role_id'] = 'guru';
         $data['title'] = 'Kegiatan';
-        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan($id_kelas);
         if ($this->input->post('keyword')) {
             $data['kegiatan'] = $this->Kegiatan_model->cariDataKegiatan();
         }
@@ -228,13 +235,14 @@ class Guru extends CI_Controller
         foreach ($user as $row) {
             $nama = $row->nama_guru;
             $image = $row->image;
+            $id_kelas = $row->id_kelas;
         }
         $data['user'] = $nama;
         $data['image'] = $image;
         $data['role_id'] = 'guru';
         $data['title'] = 'Kegiatan';
         $data['Ukegiatan'] = $this->Kegiatan_model->getKegiatanById($id);
-        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan($id_kelas);
 
         $this->form_validation->set_rules('nama', 'Nama Kegiatan', 'required', [
             'required' => 'Field Nama Kegiatan Harus Diisi'
@@ -268,7 +276,7 @@ class Guru extends CI_Controller
         }
 
         $user = $this->Identitas_model->userGuru();
-        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        
         if (isset($_POST['nis'])) {
             $this->session->set_userdata('siswa', $_POST['nis']);
         }
@@ -276,7 +284,9 @@ class Guru extends CI_Controller
         foreach ($user as $row) {
             $nama = $row->nama_guru;
             $image = $row->image;
+            $id_kelas = $row->id_kelas;
         }
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan($id_kelas);
         foreach ($siswa as $row) {
             $nama_siswa = $row->nama_siswa;
             // $image_siswa = $row->image;
@@ -307,6 +317,7 @@ class Guru extends CI_Controller
         foreach ($user as $row) {
             $nama = $row->nama_guru;
             $image = $row->image;
+            $id_kelas = $row->id_kelas;
         }
         $siswa = $this->Identitas_model->siswa($this->session->siswa);
         foreach ($siswa as $row) {
@@ -325,7 +336,7 @@ class Guru extends CI_Controller
         $data['identitas'] = $identitas;
         $data['role_id'] = 'guru';
         $data['title'] = 'Isi Kegiatan Murid';
-        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan($id_kelas);
 
         $this->load->view('templates/user_header', $data);
         $this->load->view('templates/user_sidebar', $data);
@@ -397,11 +408,12 @@ class Guru extends CI_Controller
         foreach ($user as $row) {
             $nama = $row->nama_guru;
             $image = $row->image;
+            $id_kelas = $row->id_kelas;
         }
 
 
         $data = [
-            'row' => $this->model_siswa->get(),
+            'row' => $this->model_siswa->getSiswa($id_kelas),
             'kelas2' => $this->model_siswa->getkelas()
 
         ];

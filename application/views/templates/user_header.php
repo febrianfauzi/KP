@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title><?= $title; ?></title>
+    <!-- <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/d/d5/Roman_S.svg"> -->
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -54,7 +55,7 @@
                             <i class="has-icon fas fa-user ml-4"></i> <span class="ml-2" style="text-transform: capitalize;"><?php echo $role_id; ?></span>
                             <!-- </span> -->
                             <div class="dropdown-divider"></div>
-                            <a href="<?= base_url('auth/logout'); ?>" class="dropdown-item has-icon text-danger">
+                            <a href="<?= base_url('auth/logout_' . $this->session->role); ?>" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Keluar
                             </a>
                         </div>

@@ -16,7 +16,7 @@
         <div class="section-header">
             <div class="row col">
                 <div class="col">
-                    <h1>Absensi Murid</h1>
+                    <h1>Kegiatan Siswa</h1>
                 </div>
                 <div class="col-md-1"><a href="<?= base_url('admin/Tampil_data_siswa'); ?>"><button class="btn btn-info float-right">Kembali</button></a></div>
             </div>

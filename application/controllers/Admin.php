@@ -60,11 +60,11 @@ class Admin extends CI_Controller
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password salah!</div>');
-                redirect('auth/indexAdmin');
+                redirect('admin/login');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email yang digunakan belum terdaftar</div>');
-            redirect('auth/indexAdmin');
+            redirect('admin/login');
         }
     }
 
@@ -329,7 +329,7 @@ class Admin extends CI_Controller
         }
 
         $user = $this->Identitas_model->userAdmin();
-        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        
         if(isset($_POST['nis'])){
             $this->session->set_userdata('siswa', $_POST['nis']);
         }
@@ -343,8 +343,9 @@ class Admin extends CI_Controller
             // $image_siswa = $row->image;
             $identitas = $row->nis;
             $kelas = $row->nama_kelas;
+            $id_kelas = $row->id_kelas;
         }
-
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan($id_kelas);
         $data['kelas'] = $kelas;
         $data['nama_siswa'] = $nama_siswa;
         // $data['image_siswa'] = $image_siswa;
@@ -375,6 +376,7 @@ class Admin extends CI_Controller
             // $image_siswa = $row->image;
             $identitas = $row->nis;
             $kelas = $row->nama_kelas;
+            $id_kelas = $row->id_kelas;
         }
             
         $data['tgl'] = $tgl;
@@ -386,7 +388,7 @@ class Admin extends CI_Controller
         $data['identitas'] = $identitas;
         $data['role_id'] = 'admin';
         $data['title'] = 'Isi Kegiatan Murid';
-        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan($id_kelas);
 
         $this->load->view('templates/user_header', $data);
         $this->load->view('templates/user_sidebar', $data);

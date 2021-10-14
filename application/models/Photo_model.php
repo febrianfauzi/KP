@@ -18,15 +18,16 @@ class Photo_model extends CI_model
 
         } else {
             if (!$this->upload->do_upload('foto')) {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal merubah foto, Pastikan file berbentuk .jpeg / .jpg / .png dan kurang dari 2 MB</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal merubah foto, Pastikan file berbentuk jpeg / jpg / png dan kurang dari 2 MB</div>');
             } else {
-                $this->session->unset_userdata('photo');
+                // $this->session->unset_userdata('photo');
                 $data = array(
                 'image' => $name
             );
             $this->db->where('id', $id);
             $this->db->update('user', $data);
             
+            $this->session->set_userdata('photo', $name);
             $this->session->set_userdata('photo', $name);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Foto Berhasil Diubah</div>');
             }
