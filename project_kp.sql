@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Okt 2021 pada 03.02
+-- Waktu pembuatan: 26 Okt 2021 pada 09.25
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 8.0.5
 
@@ -58,7 +58,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id`, `nip`, `nama_guru`, `id_kelas`, `alamat`) VALUES
-(198, 111111, 'Maman', 1, 'Jl.Mekar Sari D5 No. 18'),
+(198, 111111, 'Maman', 1, 'Jl.Mekar Sari D5 No. 10'),
 (199, 222222, 'Dadang', 2, '');
 
 -- --------------------------------------------------------
@@ -94,7 +94,12 @@ INSERT INTO `isi_kegiatan` (`id`, `tgl`, `nis`, `id_kegiatan`, `tindakan`) VALUE
 (29, '05-10-2021', 12345, 65, 'Tidak'),
 (30, '05-10-2021', 12345, 66, 'Ya'),
 (31, '05-10-2021', 12345, 69, 'Ya'),
-(32, '05-10-2021', 12345, 70, 'Ya');
+(32, '05-10-2021', 12345, 70, 'Ya'),
+(33, '06-10-2021', 12345, 63, 'Ya'),
+(34, '06-10-2021', 12345, 65, 'Ya'),
+(35, '06-10-2021', 12345, 66, 'Ya'),
+(36, '06-10-2021', 12345, 69, 'Ya'),
+(37, '06-10-2021', 12345, 70, 'Ya');
 
 -- --------------------------------------------------------
 
@@ -116,7 +121,7 @@ CREATE TABLE `kegiatan` (
 INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `ket`, `id_kelas`) VALUES
 (63, 'Salat subuh', '-\r\n', 1),
 (64, 'Merapihkan Kamar', '-', 2),
-(65, 'Membereskan kamar', '-', 1),
+(65, 'Membereskan kamar tidur', '-', 1),
 (66, 'Mandi pagi', '-', 1),
 (67, 'Sarapan pagi', '-', 2),
 (68, 'Olahraga pagi', '-', 2),
@@ -272,7 +277,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `isi_kegiatan`
 --
 ALTER TABLE `isi_kegiatan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `kegiatan`

@@ -239,6 +239,7 @@ class Guru extends CI_Controller
         }
         $data['user'] = $nama;
         $data['image'] = $image;
+        $data['id_kelas'] = $id_kelas;
         $data['role_id'] = 'guru';
         $data['title'] = 'Kegiatan';
         $data['Ukegiatan'] = $this->Kegiatan_model->getKegiatanById($id);
